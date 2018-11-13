@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Сергей Стулин](https://up.htmlacademy.ru/php/7/user/620391).
-* Наставник: `Неизвестно`.
+* Наставник: [Михаил Куприянов](https://htmlacademy.ru/profile/id541075).
 
 ---
 
