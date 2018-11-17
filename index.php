@@ -99,6 +99,13 @@ $user_avatar = 'img/user.jpg';
         <ul class="lots__list">
             <?php foreach ($advert_list as $kay => $advert ): ?>
 
+            <?php 
+                $number = $advert['price'];
+                $english_format_number = number_format($number, '0',' ',' ');
+                $rub = " р";
+                $num = $english_format_number.$rub;
+            ?>
+
             <li class="lots__item lot">
                 <div class="lot__image">
                     <img src="<?=$advert['picture']; ?>" width="350" height="260" alt="">
@@ -109,7 +116,7 @@ $user_avatar = 'img/user.jpg';
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount"><?=$advert['price']; ?></span>
-                            <span class="lot__cost">цена<b class="rub">р</b></span>
+                            <span class="lot__cost"><?=$num; ?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
@@ -122,7 +129,6 @@ $user_avatar = 'img/user.jpg';
     </section>
 </main>
 </div>
-
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
