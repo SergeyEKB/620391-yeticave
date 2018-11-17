@@ -97,6 +97,7 @@ $user_avatar = 'img/user.jpg';
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
+            <!--заполните этот список из массива с товарами-->
             <?php foreach ($advert_list as $kay => $advert ): ?>
 
             <li class="lots__item lot">
@@ -126,6 +127,7 @@ $user_avatar = 'img/user.jpg';
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
+            <!--заполните этот список из массива категорий-->
             <?php 
                 $index = 0;
                 $num_count = count($categories);
