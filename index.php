@@ -34,7 +34,7 @@ $lot_list = [
        'price' => '5400',
        'picture' => 'img/lot-6.jpg' ]];
 ?>
-<!DOCTYPE htl>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -125,7 +125,7 @@ $lot_list = [
             <?php 
             foreach ($categories as $index => $category ): ?>
                 <li class="nav__item">
-                    <a href="pages/all-lots.html<?=$index;?>"><?= $categories[$index];?></a>
+                    <a href="pages/all-lots.html<?=$index;?>"><?= $category;?></a>
                 </li>
             <?php endforeach; ?>
         </ul>
