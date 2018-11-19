@@ -33,6 +33,14 @@ $lot_list = [
        'category' => 'Разное',
        'price' => '5400',
        'picture' => 'img/lot-6.jpg' ]];
+function priceform($price) 
+{
+    $number = ceil($price);
+    if ($number > 1000) {
+        $number = number_format($number, 0, '.', ' ');
+    }
+    return $number.' <b class="rub">р</b>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -85,9 +93,11 @@ $lot_list = [
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
+        <?php foreach ($categories as $index => $category ): ?>
             <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html">Имя категории</a>
+                <a class="promo__link" href="pages/all-lots.html<?=$index;?>"><?= $category;?></a>
             </li>
+        <?php endforeach; ?>
         </ul>
     </section>
     <section class="lots">
@@ -105,8 +115,8 @@ $lot_list = [
                     <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=$lot['title']; ?></a></h3>
                     <div class="lot__state">
                         <div class="lot__rate">
-                            <span class="lot__amount"><?=$lot['price']; ?></span>
-                            <span class="lot__cost">функция<b class="rub">р</b></span>
+                            <span class="lot__amount"><?=priceform($lot['price'])?></span>
+                            <span class="lot__cost"><?=priceform($lot['price'])?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
@@ -119,11 +129,11 @@ $lot_list = [
     </section>
 </main>
 </div>
+
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-            <?php 
-            foreach ($categories as $index => $category ): ?>
+            <?php foreach ($categories as $index => $category ): ?>
                 <li class="nav__item">
                     <a href="pages/all-lots.html<?=$index;?>"><?= $category;?></a>
                 </li>
