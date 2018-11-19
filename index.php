@@ -3,46 +3,37 @@ $is_auth = rand(0,1);
 $user_name = 'Sergey'; 
 $user_avatar = 'img/user.jpg';
 $categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"]; 
-$lot_list = [
-    [ 'title' => '2014 Rossignol District Snowboard',
-      'category' => 'Доски и лыжи',
-      'price' => '10999,44',
-      'picture' => 'img/lot-1.jpg' ],
+$advert_list = [
+$advert = [ 'title' => '2014 Rossignol District Snowboard',
+            'class' => 'Доски и лыжи',
+            'price' => '10999',
+            'picture' => 'img/lot-1.jpg' ],
 
-    [ 'title' => 'DC Ply Mens 2016/2017 Snowboard',
-       'category' => 'Доски и лыжи',
-       'price' => '159999',
-       'picture' => 'img/lot-2.jpg' ],
+$advert = [ 'title' => 'DC Ply Mens 2016/2017 Snowboard',
+            'class' => 'Доски и лыжи',
+            'price' => '159999',
+            'picture' => 'img/lot-2.jpg' ],
 
-    [ 'title' => 'Крепления Union Contact Pro 2015 года размер L/XL',
-       'category' => 'Крепления',
-       'price' => '8000',
-       'picture' => 'img/lot-3.jpg' ],
+ $advert = [ 'title' => 'Крепления Union Contact Pro 2015 года размер L/XL',
+            'class' => 'Крепления',
+            'price' => '8000',
+            'picture' => 'img/lot-3.jpg' ],
 
-    [ 'title' => 'Ботинки для сноуборда DC Mutiny Charocal',
-       'category' => 'Ботинки',
-       'price' => '10999',
-       'picture' => 'img/lot-4.jpg' ],
+$advert = [ 'title' => 'Ботинки для сноуборда DC Mutiny Charocal',
+             'class' => 'Ботинки',
+             'price' => '10999',
+             'picture' => 'img/lot-4.jpg' ],
 
-    [ 'title' => 'Куртка для сноуборда DC Mutiny Charocal',
-       'category' => 'Одежда',
-       'price' => '7500',
-       'picture' => 'img/lot-5.jpg' ],
+$advert = [ 'title' => 'Куртка для сноуборда DC Mutiny Charocal',
+             'class' => 'Одежда',
+             'price' => '7500',
+             'picture' => 'img/lot-5.jpg' ],
 
-    [ 'title' => 'Маска Oakley Canopy',
-       'category' => 'Разное',
-       'price' => '5400',
-       'picture' => 'img/lot-6.jpg' ]];
-
-function priceform ($price) {
-$number = ceil ($price);
-if ($number > 1000)
-{
-$number = number_format($number, 0, '.', ' ');}
-return $number.' &#8381;';
-}
+ $advert = [ 'title' => 'Маска Oakley Canopy',
+            'class' => 'Разное',
+            'price' => '5400',
+            'picture' => 'img/lot-6.jpg' ]];
 ?>
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -104,7 +95,17 @@ return $number.' &#8381;';
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
-            <?php foreach ($lot_list as $lot ): ?>
+        <?php foreach ($advert_list as $kay => $advert ): ?>
+
+            <?php 
+                $number = $advert['price'];
+                $english_format_number = number_format($number, '0',' ',' ');
+                $rub = " р";
+                $num = $english_format_number.$rub;
+            ?>
+
+            <?php foreach ($advert_list as $kay => $advert ): ?>
+
             <li class="lots__item lot">
                 <div class="lot__image">
                     <img src="<?=$lot['picture']; ?>" width="350" height="260" alt="">
@@ -114,8 +115,10 @@ return $number.' &#8381;';
                     <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=$lot['title']; ?></a></h3>
                     <div class="lot__state">
                         <div class="lot__rate">
-                            <span class="lot__amount"><?=$lot['price']; ?></span>
-                            <span class="lot__cost"><?=priceform($lot['price'])?></b></span>
+                            <span class="lot__amount"><?=$advert['price']; ?></span>
+                            <span class="lot__cost"><?=$num; ?></span>
+                            <span class="lot__amount"><?=$advert['price']; ?></span>
+                            <span class="lot__cost">цена<b class="rub">р</b></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
@@ -128,15 +131,19 @@ return $number.' &#8381;';
     </section>
 </main>
 </div>
+
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
             <?php 
-            foreach ($categories as $index => $category ): ?>
-                <li class="nav__item">
-                    <a href="pages/all-lots.html<?=$index;?>"><?= $category;?></a>
-                </li>
-            <?php endforeach; ?>
+                $index = 0;
+                $num_count = count($categories);
+                while ($index < $num_count): ?>
+            <li class="nav__item">
+                <a href="pages/all-lots.html<?=$index;?>"><?=$categories[$index];?></a>
+            </li>
+            <?php $index = $index + 1;?>
+            <?php endwhile; ?>
         </ul>
     </nav>
     <div class="main-footer__bottom container">
