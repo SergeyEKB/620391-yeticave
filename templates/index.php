@@ -43,15 +43,15 @@ function priceform($price)
     return $number.' <b class="rub">р</b>';
 }
 
-$ts = time();/*текущее время*/
-$end_ts  = strtotime('24:00');
-$ts_diff = $end_ts-$ts;/*Показывает сколько осталось до начала нового дня в секундах*/
+$tomorrow = strtotime('+1 day', strtotime(date('Y-m-d')));
+$ts_diff= $tomorrow - time() ; 
 $hours = floor($ts_diff / 3600);
-$minutes = floor(($ts_diff % 3600) / 60);
 if ($hours < 10){
   $hours = '0'.$hours;
 };
+$minutes = floor(($ts_diff % 3600) / 60);
 $timer = $hours . ':' . $minutes;
+print(" $timer <br>");
 ?>
 
 <main class="container">
