@@ -44,14 +44,14 @@ function priceform($price)
 }
 
 $ts = time();/*текущее время*/
-$newday = "24 November 2018";
-$end_ts  = strtotime($newday);
+$end_ts  = strtotime('24:00');
 $ts_diff = $end_ts-$ts;/*Показывает сколько осталось до начала нового дня в секундах*/
 $hours = floor($ts_diff / 3600);
 $minutes = floor(($ts_diff % 3600) / 60);
 if ($hours < 10){
   $hours = '0'.$hours;
 };
+$timer = $hours . ':' . $minutes;
 ?>
 
 <main class="container">
@@ -85,7 +85,7 @@ if ($hours < 10){
                           <span class="lot__cost"><?=priceform($lot['price'])?></span>
                       </div>
                       <div class="lot__timer timer">
-                            <?=$hours?>:<?=$minutes?>
+                            <?=$timer?>
                       </div>
                   </div>
               </div>
