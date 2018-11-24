@@ -15,4 +15,13 @@ function include_template($name, $data) {
 
     return $result;
 }
+
+function priceform($price) 
+{
+    $number = ceil($price);
+    if ($number >= 1000) {
+        $number = number_format($number, 0, '.', ' ');
+    }
+    return $number.' <b class="rub">р</b>';
+}
 ?>
