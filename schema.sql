@@ -2,9 +2,11 @@ CREATE DATABASE `620391-yeticave`
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 
+USE `620391-yeticave`;
+
  CREATE TABLE `categories`(
 	`id` INT AUTO_INCREMENT PRIMARY KEY,
-	`name` CHAR(120) NOT NULL UNIQUE
+	`name` CHAR(120) NOT NULL
 );
  
 CREATE TABLE `lots`(
@@ -12,9 +14,9 @@ CREATE TABLE `lots`(
 	`date_add` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	`title` CHAR(60) NOT NULL,
 	`description` TEXT DEFAULT NULL,
-	`img` path CHAR(128) NOT NULL,
+	`img` CHAR(128) NOT NULL,
 	`bet` INT NOT NULL,
-	`date_end` end DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
+	`date_end` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
  CREATE TABLE `bets`(
 	`id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -31,6 +33,4 @@ CREATE TABLE `lots`(
 	`contacts` CHAR(250) NOT NULL
 );
 CREATE UNIQUE INDEX `name` ON categories(name);
-CREATE UNIQUE INDEX `title` ON lots(title);
-CREATE UNIQUE INDEX `email` ON users(email);
-CREATE UNIQUE INDEX `name` ON users(name);
+CREATE UNIQUE INDEX `mail` ON users(email);
