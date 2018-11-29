@@ -31,6 +31,4 @@ CREATE TABLE `lots`(
 	`contacts` CHAR(250) NOT NULL
 );
 CREATE UNIQUE INDEX `name` ON categories(name);
-CREATE UNIQUE INDEX `title` ON lots(title);
 CREATE UNIQUE INDEX `mail` ON users(email);
-CREATE UNIQUE INDEX `name` ON users(name);
