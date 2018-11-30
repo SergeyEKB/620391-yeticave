@@ -16,7 +16,7 @@ CREATE TABLE `lots`(
 	`description` TEXT NOT NULL,
 	`img` CHAR(128) NOT NULL,
 	`bet_step` INT NOT NULL,
-	`date_end` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
+	`date_end` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	`start_price` INT NOT NULL,
 	`author` INT NOT NULL,
 	`winner` INT DEFAULT NULL,
