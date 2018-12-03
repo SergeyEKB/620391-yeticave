@@ -1,45 +1,44 @@
 <?php
-require_once 'functions.php';
+require_once 'init.php';
 $is_auth = rand(0,1);
 $user_name = 'Sergey'; 
 $user_avatar = 'img/user.jpg';
-$categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"]; 
-$lot_list = [
-    [ 'title' => '2014 Rossignol District Snowboard',
-      'category' => 'Доски и лыжи',
-      'price' => '10999,44',
-      'picture' => 'img/lot-1.jpg' ],
 
-    [ 'title' => 'DC Ply Mens 2016/2017 Snowboard',
-       'category' => 'Доски и лыжи',
-       'price' => '159999',
-       'picture' => 'img/lot-2.jpg' ],
+if (!$con) {
+    $error = "Ошибка подключения: " . mysqli_connect_error();
+    $page_content = "<p>Ошибка MySQL: " . $error. "</p>";
+} else {
+    $sql = 'SELECT `name` FROM `categories`';
+    $result = mysqli_query($con, $sql);
 
-    [ 'title' => 'Крепления Union Contact Pro 2015 года размер L/XL',
-       'category' => 'Крепления',
-       'price' => '8000',
-       'picture' => 'img/lot-3.jpg' ],
+    if ($result) {
+        $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+    else {
+        $error = mysqli_error($con);
+        $page_content = "<p>Ошибка MySQL: " . $error. "</p>";
+    }
+        $sql = "SELECT l.title, l.start_price, l.img, date_end, c.name AS categories
+        FROM lots l
+        JOIN categories c ON c.id = l.categories_id
+        WHERE l.winner IS NULL
+        ORDER BY l.date_add DESC";
 
-    [ 'title' => 'Ботинки для сноуборда DC Mutiny Charocal',
-       'category' => 'Ботинки',
-       'price' => '10999',
-       'picture' => 'img/lot-4.jpg' ],
-
-    [ 'title' => 'Куртка для сноуборда DC Mutiny Charocal',
-       'category' => 'Одежда',
-       'price' => '7500',
-       'picture' => 'img/lot-5.jpg' ],
-
-    [ 'title' => 'Маска Oakley Canopy',
-       'category' => 'Разное',
-       'price' => '5400',
-       'picture' => 'img/lot-6.jpg' ]];
+    if ($result = mysqli_query($con, $sql)) {
+        $lots = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $page_content = include_template('index.php', ['lots' => $lots]);
+    }
+    else {
+        $error = mysqli_error($con);
+        $page_content = "<p>Ошибка MySQL: " . $error. "</p>";
+    }
+}
 
 $page_content = include_template(
     'index.php', 
     [
     'categories' => $categories, 
-    'lot_list' => $lot_list 
+    'lots' => $lots 
     ]
 );
 
