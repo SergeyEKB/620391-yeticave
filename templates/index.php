@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Asia/Yekaterinburg');
-$tomorrow = strtotime('+1 day', strtotime(date('Y-m-d')));
+$tomorrow = strtotime('tomorrow');
 $ts_diff= $tomorrow - time() ; 
 $hours = floor($ts_diff / 3600);
 if ($hours < 10){
