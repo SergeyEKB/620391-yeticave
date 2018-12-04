@@ -1,10 +1,7 @@
 <?php
-require_once 'init.php';
-require_once 'functions.php';
 require_once 'db.php';
-$is_auth = rand(0,1);
-$user_name = 'Sergey'; 
-$user_avatar = 'img/user.jpg';
+require_once 'functions.php';
+require_once 'data.php';
 
 $page_content = include_template(
     'index.php', 
