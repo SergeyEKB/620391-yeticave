@@ -1,3 +1,15 @@
+<?php
+date_default_timezone_set('Asia/Yekaterinburg');
+$tomorrow = strtotime('+1 day', strtotime(date('Y-m-d')));
+$ts_diff= $tomorrow - time() ; 
+$hours = floor($ts_diff / 3600);
+if ($hours < 10){
+  $hours = '0'.$hours;
+};
+$minutes = floor(($ts_diff % 3600) / 60);
+$timer = $hours . ':' . $minutes;
+print(" $timer <br>");
+?>
 <section class="promo">
     <h2 class="promo__title">Нужен стафф для катки?</h2>
     <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
@@ -28,7 +40,7 @@
                         <span class="lot__cost"><?=priceform($lot['price'])?></span>
                     </div>
                     <div class="lot__timer timer">
-                            12:23
+                            <?=$timer;?>
                     </div>
                 </div>
             </div>
