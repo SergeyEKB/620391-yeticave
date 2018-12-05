@@ -25,7 +25,8 @@ $sql = "
     INNER JOIN
         categories ON lots.categories_id = categories.id
     WHERE
-        `winner` IS NULL
+        winner IS NULL
+    AND date_end != CURRENT_DATE()
     GROUP BY
         lots.id
     ORDER BY

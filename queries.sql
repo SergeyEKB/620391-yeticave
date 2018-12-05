@@ -30,6 +30,7 @@ SELECT lots.`title`, `start_price`, IFNULL(max(bets.price), start_price) price, 
 LEFT JOIN bets ON bets.lots_id = lots.id
 INNER JOIN categories ON lots.categories_id = categories.id
 WHERE `winner` IS NULL
+AND `date_end` != CURRENT_DATE()
 GROUP BY lots.id
 ORDER BY lots.`date_add` DESC;
 
