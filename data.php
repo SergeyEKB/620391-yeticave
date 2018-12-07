@@ -15,6 +15,7 @@ $sql = "
     SELECT
         lots.`title`,
         `start_price`,
+        `date_end`,
         IFNULL(max(bets.price), start_price) price,
         `img`,
         categories.`name` category_name
@@ -26,7 +27,7 @@ $sql = "
         categories ON lots.categories_id = categories.id
     WHERE
         winner IS NULL
-    AND date_end != CURRENT_DATE()
+    AND date_end >= CURRENT_DATE()
     GROUP BY
         lots.id
     ORDER BY

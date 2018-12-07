@@ -1,14 +1,16 @@
 <?php
 date_default_timezone_set('Asia/Yekaterinburg');
-$tomorrow = strtotime('tomorrow');
-$ts_diff= $tomorrow - time() ; 
+function time_left($date_end) {
+$date_end = strtotime($date_end);
+$ts_diff= $date_end - time() ; 
 $hours = floor($ts_diff / 3600);
 if ($hours < 10){
-  $hours = '0'.$hours;
+$hours = '0'.$hours;
 };
 $minutes = floor(($ts_diff % 3600) / 60);
 $timer = $hours . ':' . $minutes;
-print(" $timer <br>");
+return $timer;
+}
 ?>
 <section class="promo">
     <h2 class="promo__title">Нужен стафф для катки?</h2>
@@ -40,7 +42,7 @@ print(" $timer <br>");
                         <span class="lot__cost"><?=priceform($lot['price'])?></span>
                     </div>
                     <div class="lot__timer timer">
-                            <?=$timer;?>
+                           <?=time_left($lot['date_end']);?> 
                     </div>
                 </div>
             </div>
