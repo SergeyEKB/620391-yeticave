@@ -1,17 +1,3 @@
-<?php
-date_default_timezone_set('Asia/Yekaterinburg');
-function time_left($date_end) {
-$date_end = strtotime($date_end);
-$ts_diff= $date_end - time() ; 
-$hours = floor($ts_diff / 3600);
-if ($hours < 10){
-$hours = '0'.$hours;
-};
-$minutes = floor(($ts_diff % 3600) / 60);
-$timer = $hours . ':' . $minutes;
-return $timer;
-}
-?>
 <section class="promo">
     <h2 class="promo__title">Нужен стафф для катки?</h2>
     <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
