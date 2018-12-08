@@ -15,8 +15,8 @@ VALUES ('2014 Rossignol District Snowboard', 'Доска для сноуборд
 ('DC Ply Mens 2016/2017 Snowboard', 'Доска для сноуборда DC Ply Mens 2016/2017', 'img/lot-2.jpg', 159999, 1000, '2018-12-01 00:00:00', 1, 2),
 ('Крепления Union Contact Pro 2015 года размер L/XL', 'Крепления Union Contact Pro', 'img/lot-3.jpg', 8000, 500, '2018-12-01 00:00:00', 2, 1),
 ('Ботинки для сноуборда DC Mutiny Charocal', 'Ботинки для сноуборда', 'img/lot-4.jpg', 10999, 500,  '2018-12-02 00:00:00', 3 , 2),
-('Куртка для сноуборда DC Mutiny Charocal', 'Куртка для сноуборда', 'img/lot-5.jpg', 7500, 100, '2018-12-03 00:00:00', 4, 1),
-('Маска Oakley Canopy', 'Маска для сноуборда', 'img/lot-6.jpg', 5400, 100, '2018-12-03 00:00:00', 4 ,2);
+('Куртка для сноуборда DC Mutiny Charocal', 'Куртка для сноуборда', 'img/lot-5.jpg', 7500, 100, '2018-12-18 00:00:00', 4, 1),
+('Маска Oakley Canopy', 'Маска для сноуборда', 'img/lot-6.jpg', 5400, 100, '2018-12-22 00:00:00', 4 ,2);
 
 /*Добавил  ставки*/
 INSERT INTO bets (price, users_id, lots_id)
@@ -30,6 +30,7 @@ SELECT lots.`title`, `start_price`, IFNULL(max(bets.price), start_price) price, 
 LEFT JOIN bets ON bets.lots_id = lots.id
 INNER JOIN categories ON lots.categories_id = categories.id
 WHERE `winner` IS NULL
+AND `date_end` != CURRENT_DATE()
 GROUP BY lots.id
 ORDER BY lots.`date_add` DESC;
 
