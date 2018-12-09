@@ -14,6 +14,7 @@ $lots = [];
 $sql = "
     SELECT
         lots.`title`,
+        lots.`id`,
         `start_price`,
         `date_end`,
         IFNULL(max(bets.price), start_price) price,
